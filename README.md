@@ -30,51 +30,13 @@ Every week the bot fires a scheduled reminder, optionally pre-fills a draft from
 
 ## 💬 Conversation Flow
 
-```
-Scheduler fires (e.g. Tuesday 12:00 PM)
-    │
-    ▼
-Bot DMs the user:
-  "Hi! It's timecard day. What would you like to do?"
-  [ Reuse Last Week ]  [ Enter Manually ]  [ Remind Me Later ]  [ Skip This Week ]
-    │
-    ├─ Reuse Last Week
-    │     └─ Fetches previous week entries → shifts dates +7 days → shows draft
-    │           [ Approve ]  [ Edit ]  [ Cancel ]
-    │               │
-    │               ├─ Approve → submits to Oracle HCM → confirmation in Slack ✅
-    │               └─ Edit   → opens per-day time-picker modal → rebuild draft
-    │
-    ├─ Enter Manually
-    │     └─ Opens blank 5-day modal (Project / Task / Type / Location)
-    │           → review preview → Submit → Oracle HCM → confirmation ✅
-    │
-    ├─ Remind Me Later
-    │     └─ Snooze modal (15 / 30 / 60 / 120 min or custom date+time)
-    │           → bot reschedules and resends the reminder
-    │
-    └─ Skip This Week
-          └─ Acknowledges + links to Oracle HCM for manual entry
-```
+![Conversation Flow](conversation_flow.svg)
 
 ---
 
 ## 🏗️ Architecture
 
-```
-┌──────────────────────────────────────────────────────────┐
-│  APScheduler (weekly cron)                               │
-│    └─ send_weekly_reminders() → Slack DM per user        │
-└──────────────────┬───────────────────────────────────────┘
-                   │ Socket Mode WebSocket
-┌──────────────────▼───────────────────────────────────────┐
-│  Slack Bolt App (app.py)                                 │
-│    handlers.py ── blocks.py ── draft_engine.py           │
-│         │               │              │                 │
-│    user_registry   status_tracker   hcm_client           │
-│    (JSON file)     (JSON file)      (REST)               │
-└──────────────────────────────────────────────────────────┘
-```
+![Architecture](architecture.svg)
 
 **Module breakdown**
 
