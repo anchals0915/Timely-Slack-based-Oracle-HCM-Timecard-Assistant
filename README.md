@@ -197,6 +197,21 @@ pytest src/services/tests/ --cov=src/services --cov-report=term-missing
 
 ---
 
-## 📄 License
 
-MIT
+<div align="center">
+
+## Want the full picture?
+
+The architecture, AI pipeline, fraud detection logic, and data model aren't published here — they represent the core IP of this solution.
+
+*I'm happy to walk through everything directly.*
+
+<br/>
+
+[![LinkedIn](https://img.shields.io/badge/Anchal_Singh-Connect_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/anchalsingh1509/)
+&nbsp;&nbsp;
+[![Email](https://img.shields.io/badge/anchals0915%40gmail.com-Write_to_me-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:anchals0915@gmail.com)
+
+<br/>
+
+---
